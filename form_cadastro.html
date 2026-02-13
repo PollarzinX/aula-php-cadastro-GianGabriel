@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueleto de Formulário de Registo</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .section-title {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="text-center mb-4">Registo de Utilizador</h2>
+    
+    <form action="processar.php" method="POST" enctype="multipart/form-data">
+        <!-- Secção: Dados Pessoais -->
+        <div class="mb-5">
+            <h4 class="section-title">Dados Pessoais</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" name="nome" placeholder="Ex: João">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Apelido</label>
+                    <input type="text" class="form-control" name="sobrenome" placeholder="Ex: Silva">
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" name="email" placeholder="joao@exemplo.com">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Data de Nascimento</label>
+                    <input type="date" class="form-control" name="data_nascimento" title="Data de Nascimento">
+                </div>
+            </div>
+        </div>
+
+        <!-- Secção: Preferências -->
+        <div class="mb-5">
+            <h4 class="section-title">Preferências</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label" for="pais_residencia">País de Residência</label>
+                    <select class="form-select" id="pais_residencia" name="pais_residencia" title="País de Residência">
+                        <option selected disabled>Escolha um país...</option>
+                        <option>Portugal</option>
+                        <option>Brasil</option>
+                        <option>Angola</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" >Nível de Experiência</label>
+                    <div class="mt-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="junior" name="nivel" value="junior">
+                            <label class="form-check-label" for="junior">Júnior</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="pleno" name="nivel" value="pleno">
+                            <label class="form-check-label" for="pleno">Pleno</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="senior" name="nivel" value="senior">
+                            <label class="form-check-label" for="senior">Sénior</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Áreas de Interesse</label>
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="tech" name="areas_interesse[]" value="tecnologia">
+                            <label class="form-check-label" for="tech">Tecnologia</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="design" name="areas_interesse[]" value="design">
+                            <label class="form-check-label" for="design">Design</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="marketing" name="areas_interesse[]" value="marketing">
+                            <label class="form-check-label" for="marketing">Marketing</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secção: Adicional -->
+        <div class="mb-5">
+            <h4 class="section-title">Informações Adicionais</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label" for="curriculo">Currículo (PDF)</label>
+                    <input class="form-control" type="file" name="curriculo" id="curriculo" title="Anexar currículo em PDF">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Expectativa Salarial</label>
+                    <input type="range" name="expectativa_salarial" class="form-range" min="0" max="100" title="Expectativa Salarial">
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-control" rows="3" placeholder="Escreva aqui..." name="observacoes"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="reset" class="btn btn-outline-secondary me-md-2">Limpar</button>
+            <button type="submit" class="btn btn-primary px-4">Submeter</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
